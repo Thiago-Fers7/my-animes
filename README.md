@@ -28,10 +28,10 @@ Há diversos hooks, principalmente dentro de outros frameworks, mas o React nati
 
 - [useState](https://pt-br.reactjs.org/docs/hooks-reference.html#usestate)
 - [useEffect](https://pt-br.reactjs.org/docs/hooks-reference.html#useeffect)
-- [useContext*](https://pt-br.reactjs.org/docs/hooks-reference.html#usecontext)
 - [useCallback](https://pt-br.reactjs.org/docs/hooks-reference.html#usereducer)
 - [useMemo](https://pt-br.reactjs.org/docs/hooks-reference.html#usecallback)
 - [useRef](https://pt-br.reactjs.org/docs/hooks-reference.html#usememo)
+- [useContext](https://pt-br.reactjs.org/docs/hooks-reference.html#usecontext)
 - [useLayoutEffect](https://pt-br.reactjs.org/docs/hooks-reference.html#useref)
 - [useReducer](https://pt-br.reactjs.org/docs/hooks-reference.html#useimperativehandle)
 - [useImperativeHandle](https://pt-br.reactjs.org/docs/hooks-reference.html#uselayouteffect)
