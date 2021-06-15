@@ -55,7 +55,7 @@ Use qualquer uma das APIs disponíveis na URL abaixo:
 
 - [Public APIs](https://github.com/public-apis/public-apis)
 
-### Especificado
+### Específico
 
 Utilize a API da FIPE abaixo para pesquisar por Marca, Modelo e Ano um carro e exibir os dados dele:
 
