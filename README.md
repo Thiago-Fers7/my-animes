@@ -1,6 +1,6 @@
 # 07 - React Hooks
 
-Hooks são uma nova adição ao React que te permitem o uso do state e outros recursos do React sem escrever uma classe. Ou melhor com toda a performance e pouco código escrito que uma função tem.
+Hooks são uma nova adição ao React, à partir da versão 16.8, que permitem o uso do `state` e outros recursos do React sem escrever uma classe. Ou melhor com toda a performance e pouco código escrito que uma função tem.
 
 - https://pt-br.reactjs.org/docs/hooks-intro.html
 
