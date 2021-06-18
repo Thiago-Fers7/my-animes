@@ -1,0 +1,62 @@
+.headerContainer {
+    background: rgb(6, 0, 61);
+}
+
+.headerContainer nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 5rem;
+    padding: 0 2rem;
+
+    height: 6rem;
+
+    max-width: 1200px;
+    margin: auto;
+}
+
+.headerContainer nav strong {
+    font-size: 2rem;
+    white-space: nowrap;
+}
+
+.headerContainer nav ul {
+    display: flex;
+    gap: 1.2rem;
+    list-style: none;
+}
+
+.headerContainer nav ul li {
+    padding: 1.4rem;
+    font-size: 1.2rem;
+}
+
+.formContainer {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.formContainer input {
+    background: transparent;
+    outline: transparent;
+    border: 1px solid blue;
+    border-radius: 0.4rem;
+
+    font-size: 1.2rem;
+    padding: 0.5rem 1rem;
+
+    color: rgba(255, 255, 255, 0.685);
+}
+
+.formContainer button {
+    background: transparent;
+    border: none;
+    outline: transparent;
+
+    font-size: 0;
+}
+
+.formContainer button img {
+    height: 2rem;
+}
