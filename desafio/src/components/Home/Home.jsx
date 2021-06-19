@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import { api } from '../../services/api'
 
+import styles from './styles.module.css'
+
 function Home() {
     const [homeEpisodes, setHomeEpisodes] = useState([])
     const [isEpisode, setIsEpisode] = useState(false)
@@ -8,7 +10,9 @@ function Home() {
     useEffect(() => {
         api.get('top/anime/1/upcoming')
             .then(({ data }) => {
-                setHomeEpisodes(data.top)
+                const topMostRated = data.top.slice(0, 15)
+                
+                setHomeEpisodes(topMostRated)
                 setIsEpisode(true)
             })
             .catch(error => {
@@ -17,16 +21,16 @@ function Home() {
     }, [])
 
     return (
-        <section>
+        <section className={styles.episodeContainer}>
             {isEpisode && (
                 homeEpisodes.map(episode => {
                     return (
-                        <div key={episode.mal_id}>
+                        <div key={episode.mal_id} className={styles.episode}>
                             <img src={episode.image_url} alt="Capa" />
-                            <div>
-                                <button type="button">X</button>
+                            <div className={styles.legend}>
+                                <button type="button">Adiconar</button>
                                 <strong>{episode.title}</strong>
-                                <span>Data de lançamento: {episode.start_date}</span>
+                                <span>{episode.start_date ? `Data de lançamento: ${episode.start_date}` : ''}</span>
                             </div>
                         </div>
                     )

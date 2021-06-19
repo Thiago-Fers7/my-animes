@@ -1,0 +1,66 @@
+.episodeContainer {
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    gap: 1.5rem 0.5rem;
+}
+
+.episode {
+    max-width: 200px;
+    position: relative;
+
+    transition: 0.3s all ease-in-out;
+}
+
+.episode img {
+    box-shadow: 1px 1px 3px white;
+
+    width: 100%;
+    min-width: 200px;
+    height: 250px;
+    object-fit: cover;
+}
+
+.legend {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 0.3rem 0;
+}
+
+.legend button {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: black;
+
+    padding: 0.5rem;
+    border: none;
+    box-shadow: 0 0 3px white;
+    border-radius: 0.2rem;
+
+    opacity: 0;
+
+    transition: 0.2s all ease-in-out;
+}
+
+.legend button:hover {
+    box-shadow: 0 0 10px rgb(4, 251, 25), 0 0 5px rgb(0, 59, 5);
+    transform: scale(1.05);
+}
+
+.episode:hover .legend button {
+    opacity: 1;
+}
+
+.legend strong {
+    line-height: 1.4rem;
+    filter: brightness(0.95);
+}
+
+.legend span {
+    font-size: 0.875rem;
+    padding: 0.2rem 0;
+    filter: brightness(0.6);
+}

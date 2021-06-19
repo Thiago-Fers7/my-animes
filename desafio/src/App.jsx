@@ -6,6 +6,8 @@ import styles from './styles/app.module.css'
 import './styles/global.css'
 
 function App() {
+  
+
   return (
     <HomeContextProvider>
       <div className={styles.appContainer}>
