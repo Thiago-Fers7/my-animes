@@ -1,25 +1,36 @@
-.episodeContainer {
-    max-width: 1200px;
-    margin: auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    gap: 1.5rem 0.5rem;
+h2 {
+    padding: 1rem 0;
+    text-align: center;
 }
 
-.episode {
+.episodeContainer {
+    margin: 0 auto 3rem auto;
+    display: flex;
+    overflow-x: scroll;
+    gap: 0 3rem;
+
+    padding: 1rem 2rem;
+    background: #00000030;
+    border-radius: 0.5rem;
+}
+
+.popularEpisode,
+.resEpisode {
     max-width: 200px;
     position: relative;
 
     transition: 0.3s all ease-in-out;
 }
 
-.episode img {
-    box-shadow: 1px 1px 3px white;
+.popularEpisode img,
+.resEpisode img {
+    box-shadow: 1px 1px 3px #ffffff;
 
     width: 100%;
     min-width: 200px;
     height: 250px;
     object-fit: cover;
+    border-radius: 0.5rem;
 }
 
 .legend {
@@ -50,7 +61,8 @@
     transform: scale(1.05);
 }
 
-.episode:hover .legend button {
+.popularEpisode:hover .legend button,
+.resEpisode:hover .legend button {
     opacity: 1;
 }
 
@@ -59,8 +71,72 @@
     filter: brightness(0.95);
 }
 
+.legend strong:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
 .legend span {
     font-size: 0.875rem;
     padding: 0.2rem 0;
     filter: brightness(0.6);
+}
+
+.remainingEpisodes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 1.2rem;
+    justify-content: space-evenly;
+
+    gap: 3rem;
+
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+
+    max-width: 1261px;
+    margin: auto;
+}
+
+.popularEpisode {
+    max-width: 200px;
+    position: relative;
+
+    transition: 0.3s all ease-in-out;
+}
+
+.footerContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    padding: 3rem 0;
+}
+
+.footerContainer button {
+    padding: 1rem;
+    background: transparent;
+    outline: transparent;
+    border: 1px solid white;
+    border-radius: 0.5rem;
+    font-size: 1.1rem;
+    text-transform: capitalize;
+    font-weight: 600;
+    letter-spacing: 0.1rem;
+}
+
+@media screen and (max-width: 571px) {
+    .remainingEpisodes {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        justify-items: center;
+    }
+
+    .resEpisode {
+        max-width: 150px;
+    }
+
+    .resEpisode img {
+        min-width: auto;
+    }
 }
