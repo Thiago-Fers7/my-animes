@@ -42,7 +42,7 @@ function Home() {
             </section>
 
             <footer className={styles.footerContainer}>
-                <button type="button" onClick={handleAnimes}>ver mais</button>
+                <button onClick={() => {handleAnimes(); window.scrollTo(0, 0)}} type="button">ver mais</button>
             </footer>
         </>
     )

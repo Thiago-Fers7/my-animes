@@ -3,18 +3,24 @@ import { GlobalContext } from '../../contexts/GlobalContext';
 import styles from './styles.module.css';
 
 function Header() {
-    const { isHome, isAnimes, isFav, handleAnimes, handleHome, handleFav, searchResult } = useContext(GlobalContext)
+    const { isHome, isAnimes, isFav, handleAnimes, handleHome, handleFav, searchResult, exitSearchMode } = useContext(GlobalContext)
 
     const [valueInput, setValueInput] = useState('')
 
     function capValue(e) {
-        setValueInput(e.target.value)
+        const inputValue = e.target.value
+
+        if (inputValue === '') {
+            exitSearchMode()
+        } else {
+            setValueInput(inputValue)
+        }
     }
 
     return (
         <header className={styles.headerContainer}>
             <nav>
-                <strong>Meus animes</strong>
+                <strong id="Logo">Meus animes</strong>
                 <ul>
                     <li
                         className={isHome ? styles.isActive : ''}
@@ -39,7 +45,11 @@ function Header() {
                 </ul>
 
                 <form className={styles.formContainer}>
-                    <input type="search" onChange={capValue} />
+                    <input
+                        type="search"
+                        onChange={capValue}
+                        placeholder="Buscar anime"
+                    />
 
                     <button
                         type="button"

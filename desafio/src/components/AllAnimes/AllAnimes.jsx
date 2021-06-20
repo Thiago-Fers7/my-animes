@@ -11,6 +11,7 @@ function AllAnimes() {
         if (page === 1) {
             return
         } else {
+            window.scrollTo(0, 0)
             pageSelect(page - 1)
         }
     }
@@ -19,12 +20,9 @@ function AllAnimes() {
         if (page === 20) {
             return
         } else {
+            window.scrollTo(0, 0)
             pageSelect(page + 1)
         }
-    }
-
-    function test(index, pageCurrent) {
-        console.log(index + '\n' + pageCurrent)
     }
 
     return (
@@ -53,7 +51,6 @@ function AllAnimes() {
                             onClick={() => pageSelect(index + 1)}
                             className={index + 1 === page ? styles.thisPage : ''}
                             key={thisPage}
-                            onLoad={() => test(index)}
                         >
                             {thisPage}
                         </span>

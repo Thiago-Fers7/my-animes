@@ -24,7 +24,16 @@ export function GlobalContextProvider({ children }) {
 
     const [page, setPage] = useState(1)
 
+    function exitSearchMode() {
+        setIsQuest(false)
+        setIsSearching(false)
+    }
+
     async function searchResult(keyWord) {
+        if (keyWord === '') {
+            return
+        }
+
         setIsQuest(true)
         setIsSearching(true)
 
@@ -33,7 +42,7 @@ export function GlobalContextProvider({ children }) {
                 setQuestAnimesRes(data.results)
             })
             .catch((error) => {
-                console.log(error)
+                console.log("Nenhum resultado encontrado")
             })
             .finally(() => {
                 setIsSearching(false)
@@ -41,6 +50,7 @@ export function GlobalContextProvider({ children }) {
     }
 
     function pageSelect(currentPage) {
+        window.scrollTo(0, 0)
         setPage(currentPage)
     }
 
@@ -76,18 +86,24 @@ export function GlobalContextProvider({ children }) {
     }, [])
 
     function handleHome() {
+        setIsQuest(false)
+
         setIsFav(false)
         setIsHome(true)
         setIsAnimes(false)
     }
 
     function handleAnimes() {
+        setIsQuest(false)
+
         setIsFav(false)
         setIsHome(false)
         setIsAnimes(true)
     }
 
     function handleFav() {
+        setIsQuest(false)
+
         setIsFav(true)
         setIsHome(false)
         setIsAnimes(false)
@@ -128,7 +144,8 @@ export function GlobalContextProvider({ children }) {
             page,
             isQuest,
             searchResult,
-            questAnimesRes
+            questAnimesRes,
+            exitSearchMode
         }}>
             {children}
         </GlobalContext.Provider>
