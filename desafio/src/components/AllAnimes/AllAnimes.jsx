@@ -5,7 +5,27 @@ import stylesHome from "../Home/styles.module.css"
 import styles from "./styles.module.css"
 
 function AllAnimes() {
-    const { addAnimeToFav, allAnimes, amountPage, pageSelect, isSearching } = useContext(GlobalContext)
+    const { addAnimeToFav, allAnimes, amountPage, pageSelect, isSearching, page } = useContext(GlobalContext)
+
+    function nextPage() {
+        if (page === 20) {
+            return
+        } else {
+            pageSelect(page + 1)
+        }
+    }
+
+    function previousPage() {
+        if (page === 1) {
+            return
+        } else {
+            pageSelect(page - 1)
+        }
+    }
+
+    function test(index, pageCurrent) {
+        console.log(index + '\n' + pageCurrent)
+    }
 
     return (
         <>
@@ -30,9 +50,18 @@ function AllAnimes() {
 
             <footer className={stylesHome.footerContainer}>
                 <div className={styles.pagesContainer}>
-                    <img src="/images/left.svg" alt="Voltar" />
-                    {amountPage.map((page, index) => <span onClick={() => pageSelect(index + 1)} className={styles.pagesNumber} key={page}>{page}</span>)}
-                    <img src="/images/left.svg" alt="Avançar" />
+                    <img src="/images/left.svg" alt="Voltar" onClick={previousPage} />
+                    {amountPage.map((thisPage, index) =>
+                        <span
+                            onClick={() => pageSelect(index + 1)}
+                            className={index + 1 === page ? styles.thisPage : ''}
+                            key={thisPage}
+                            onLoad={() => test(index)}
+                        >
+                            {thisPage}
+                        </span>
+                    )}
+                    <img src="/images/left.svg" alt="Avançar" onClick={nextPage} />
                 </div>
             </footer>
         </>
