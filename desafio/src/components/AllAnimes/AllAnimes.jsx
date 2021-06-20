@@ -2,10 +2,11 @@ import { useContext, useEffect, useState } from "react"
 import { GlobalContext } from "../../contexts/GlobalContext"
 import { api } from "../../services/api"
 
-import styles from "../Home/styles.module.css"
+import stylesHome from "../Home/styles.module.css"
+import styles from "./styles.module.css"
 
 function AllAnimes() {
-    const { isAnimes } = useContext(GlobalContext)
+    const { isAnimes, addAnimeToFav, favorites } = useContext(GlobalContext)
 
     const [allAnimes, setAllAnimes] = useState([])
     const [amountPage, setAmountPage] = useState([])
@@ -16,7 +17,6 @@ function AllAnimes() {
             pages.push(i)
         }
 
-        console.log(pages)
         setAmountPage(pages)
     }
 
@@ -30,16 +30,16 @@ function AllAnimes() {
 
     return (
         <>
-            <h2>Todos Animes</h2>
             {isAnimes && (
                 <>
-                    <section className={styles.remainingEpisodes}>
+                    <h2>Todos Animes</h2>
+                    <section className={stylesHome.remainingEpisodes}>
                         {allAnimes.map(anime => {
                             return (
-                                <div key={anime.mal_id} className={styles.resEpisode}>
-                                    <img src={anime.image_url} alt="Capa" />
-                                    <div className={styles.legend}>
-                                        <button type="button">Adiconar</button>
+                                <div key={anime.mal_id} className={stylesHome.resEpisode}>
+                                    <img src={anime.image_url} alt="Capa" className={favorites.indexOf(anime.mal_id) !== -1 ? stylesHome.isFavAdded : ''} />
+                                    <div className={stylesHome.legend}>
+                                        <button type="button" onClick={() => addAnimeToFav(anime.mal_id)}>Adiconar</button>
                                         <strong>{anime.title}</strong>
                                         <span>{anime.start_date ? `Data de lançamento: ${anime.start_date}` : ''}</span>
                                     </div>
@@ -48,9 +48,11 @@ function AllAnimes() {
                         })}
                     </section>
 
-                    <footer className={styles.footerContainer}>
-                        <div>
-                            {amountPage.map(page => <span key={page}>{page}</span>)}
+                    <footer className={stylesHome.footerContainer}>
+                        <div className={styles.pagesContainer}>
+                            <img src="/images/left.svg" alt="Voltar" />
+                            {amountPage.map(page => <span className={styles.pagesNumber} key={page}>{page}</span>)}
+                            <img src="/images/left.svg" alt="Avançar" />
                         </div>
                     </footer>
                 </>
