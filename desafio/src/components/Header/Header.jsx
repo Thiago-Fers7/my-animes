@@ -1,9 +1,15 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { GlobalContext } from '../../contexts/GlobalContext';
 import styles from './styles.module.css';
 
 function Header() {
-    const { isHome, isAnimes, isFav, handleAnimes, handleHome, handleFav } = useContext(GlobalContext)
+    const { isHome, isAnimes, isFav, handleAnimes, handleHome, handleFav, searchResult } = useContext(GlobalContext)
+
+    const [valueInput, setValueInput] = useState('')
+
+    function capValue(e) {
+        setValueInput(e.target.value)
+    }
 
     return (
         <header className={styles.headerContainer}>
@@ -33,9 +39,13 @@ function Header() {
                 </ul>
 
                 <form className={styles.formContainer}>
-                    <input type="text" />
+                    <input type="search" onChange={capValue} />
 
-                    <button type="button" className={styles.active}>
+                    <button
+                        type="button"
+                        className={styles.active}
+                        onClick={() => searchResult(valueInput)}
+                    >
                         <img src="/images/search.svg" alt="Pesquisa" />
                     </button>
                 </form>

@@ -7,6 +7,10 @@ export function GlobalContextProvider({ children }) {
     const [isHome, setIsHome] = useState(true)
     const [isAnimes, setIsAnimes] = useState(false)
     const [isFav, setIsFav] = useState(false)
+
+    const [isQuest, setIsQuest] = useState(false)
+    const [questAnimesRes, setQuestAnimesRes] = useState([])
+
     const [favorites, setFavorites] = useState([])
 
     const [allAnimes, setAllAnimes] = useState([])
@@ -19,6 +23,22 @@ export function GlobalContextProvider({ children }) {
     const [isSearching, setIsSearching] = useState(false)
 
     const [page, setPage] = useState(1)
+
+    async function searchResult(keyWord) {
+        setIsQuest(true)
+        setIsSearching(true)
+
+        await api.get(`search/anime?q=${keyWord}&page=1`)
+            .then(({ data }) => {
+                setQuestAnimesRes(data.results)
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+            .finally(() => {
+                setIsSearching(false)
+            })
+    }
 
     function pageSelect(currentPage) {
         setPage(currentPage)
@@ -105,7 +125,10 @@ export function GlobalContextProvider({ children }) {
             isEpisode,
             pageSelect,
             isSearching,
-            page
+            page,
+            isQuest,
+            searchResult,
+            questAnimesRes
         }}>
             {children}
         </GlobalContext.Provider>

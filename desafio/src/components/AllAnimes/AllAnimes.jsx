@@ -5,15 +5,7 @@ import stylesHome from "../Home/styles.module.css"
 import styles from "./styles.module.css"
 
 function AllAnimes() {
-    const { addAnimeToFav, allAnimes, amountPage, pageSelect, isSearching, page } = useContext(GlobalContext)
-
-    function nextPage() {
-        if (page === 20) {
-            return
-        } else {
-            pageSelect(page + 1)
-        }
-    }
+    const { addAnimeToFav, allAnimes, amountPage, pageSelect, page } = useContext(GlobalContext)
 
     function previousPage() {
         if (page === 1) {
@@ -23,15 +15,20 @@ function AllAnimes() {
         }
     }
 
+    function nextPage() {
+        if (page === 20) {
+            return
+        } else {
+            pageSelect(page + 1)
+        }
+    }
+
     function test(index, pageCurrent) {
         console.log(index + '\n' + pageCurrent)
     }
 
     return (
         <>
-            {isSearching && (
-                <div className="loader" />
-            )}
             <h2>Todos Animes</h2>
             <section className={stylesHome.remainingEpisodes}>
                 {allAnimes.map(anime => {
