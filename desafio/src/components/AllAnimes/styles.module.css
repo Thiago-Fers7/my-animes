@@ -34,3 +34,7 @@
 .pagesContainer img:last-child {
     transform: scaleX(-1);
 }
+
+.thisPage {
+    border: 1px solid rgb(0, 68, 255);
+}

@@ -20,15 +20,6 @@ export function GlobalContextProvider({ children }) {
 
     const [page, setPage] = useState(1)
 
-    function allPages(amount) {
-        let pages = []
-        for (let i = 1; i <= amount; i++) {
-            pages.push(i)
-        }
-
-        setAmountPage(pages)
-    }
-
     function pageSelect(currentPage) {
         setPage(currentPage)
     }
@@ -38,7 +29,6 @@ export function GlobalContextProvider({ children }) {
         api.get(`search/anime?q=&order_by=members&sort=desc&page=${page}`)
             .then(({ data }) => {
                 setAllAnimes(data.results)
-                allPages(data.last_page)
             })
             .finally(() => {
                 setIsSearching(false)
@@ -54,6 +44,15 @@ export function GlobalContextProvider({ children }) {
                 setHomeEpisodesTop(topMostRated)
                 setHomeEpisodesRes(moreEpisodes)
             })
+    }, [])
+
+    useEffect(() => {
+        let pages = []
+        for (let i = 1; i <= 20; i++) {
+            pages.push(i)
+        }
+
+        setAmountPage(pages)
     }, [])
 
     function handleHome() {
@@ -105,7 +104,8 @@ export function GlobalContextProvider({ children }) {
             homeEpisodesTopRes,
             isEpisode,
             pageSelect,
-            isSearching
+            isSearching,
+            page
         }}>
             {children}
         </GlobalContext.Provider>
