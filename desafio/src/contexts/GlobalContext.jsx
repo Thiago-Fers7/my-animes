@@ -16,25 +16,34 @@ export function GlobalContextProvider({ children }) {
     const [homeEpisodesTopRes, setHomeEpisodesRes] = useState([])
     const [isEpisode, setIsEpisode] = useState(false)
 
-    useEffect(() => {
-        function allPages(amount) {
-            let pages = []
-            for (let i = 1; i <= amount; i++) {
-                pages.push(i)
-            }
+    const [isSearching, setIsSearching] = useState(false)
 
-            setAmountPage(pages)
+    const [page, setPage] = useState(1)
+
+    function allPages(amount) {
+        let pages = []
+        for (let i = 1; i <= amount; i++) {
+            pages.push(i)
         }
 
+        setAmountPage(pages)
+    }
 
-        api.get('search/anime?q=&order_by=members&sort=desc&page=1')
+    function pageSelect(currentPage) {
+        setPage(currentPage)
+    }
+
+    useEffect(() => {
+        setIsSearching(true)
+        api.get(`search/anime?q=&order_by=members&sort=desc&page=${page}`)
             .then(({ data }) => {
                 setAllAnimes(data.results)
                 allPages(data.last_page)
             })
-    }, [])
-
-
+            .finally(() => {
+                setIsSearching(false)
+            })
+    }, [page])
 
     useEffect(() => {
         api.get('top/anime/1/upcoming')
@@ -44,11 +53,6 @@ export function GlobalContextProvider({ children }) {
 
                 setHomeEpisodesTop(topMostRated)
                 setHomeEpisodesRes(moreEpisodes)
-
-                setIsEpisode(true)
-            })
-            .catch(error => {
-                setIsEpisode(false)
             })
     }, [])
 
@@ -99,8 +103,9 @@ export function GlobalContextProvider({ children }) {
             amountPage,
             homeEpisodesTop,
             homeEpisodesTopRes,
-            isEpisode
-
+            isEpisode,
+            pageSelect,
+            isSearching
         }}>
             {children}
         </GlobalContext.Provider>
