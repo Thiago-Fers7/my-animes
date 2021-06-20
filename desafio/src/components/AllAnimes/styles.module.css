@@ -1,0 +1,30 @@
+.pagesContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.pagesContainer span,
+.pagesContainer img {
+    background: #201c48;
+    padding: 0.5rem;
+    width: 33px;
+    border-radius: 50%;
+
+    text-align: center;
+
+    cursor: pointer;
+    user-select: none;
+}
+
+.pagesContainer img {
+    width: auto;
+    background: transparent;
+    border: 1px solid rgb(0, 68, 255);
+}
+
+.pagesContainer img:last-child {
+    transform: scaleX(-1);
+}

@@ -33,6 +33,11 @@ h2 {
     border-radius: 0.5rem;
 }
 
+.popularEpisode img.isFavAdded,
+.resEpisode img.isFavAdded {
+    box-shadow: 0 0 12px #2ad813;
+}
+
 .legend {
     display: flex;
     flex-direction: column;
