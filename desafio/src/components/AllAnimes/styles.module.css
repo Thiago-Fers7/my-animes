@@ -17,6 +17,12 @@
 
     cursor: pointer;
     user-select: none;
+
+    transition: filter 0.1s;
+}
+
+.pagesContainer span:hover {
+    filter: brightness(0.6);
 }
 
 .pagesContainer img {

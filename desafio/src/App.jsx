@@ -1,5 +1,6 @@
 import { useContext } from 'react'
 import AllAnimes from './components/AllAnimes/AllAnimes'
+import Favorites from './components/Favorites/Favorites'
 import Header from './components/Header/Header'
 import Home from './components/Home/Home'
 import { GlobalContext } from './contexts/GlobalContext'
@@ -16,6 +17,7 @@ function App() {
       <main>
         {isHome ? <Home /> : ''}
         {isAnimes ? <AllAnimes /> : ''}
+        {isFav ? <Favorites /> : ''}
       </main>
     </div>
   )
