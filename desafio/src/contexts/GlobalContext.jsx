@@ -6,6 +6,7 @@ export function GlobalContextProvider({ children }) {
     const [isHome, setIsHome] = useState(true)
     const [isAnimes, setIsAnimes] = useState(false)
     const [isFav, setIsFav] = useState(false)
+    const [favorites, setFavorites] = useState([])
 
     function handleHome() {
         setIsFav(false)
@@ -25,6 +26,15 @@ export function GlobalContextProvider({ children }) {
         setIsAnimes(false)
     }
 
+    function addAnimeToFav(id) {
+        if (favorites.indexOf(id) === -1) {
+            let ids = favorites
+            ids.push(id)
+            console.log(ids)
+            setFavorites(ids)
+        }
+    }
+
     return (
         <GlobalContext.Provider value={{
             isHome,
@@ -32,7 +42,9 @@ export function GlobalContextProvider({ children }) {
             isFav,
             handleFav,
             handleAnimes,
-            handleHome
+            handleHome,
+            addAnimeToFav,
+            favorites
         }}>
             {children}
         </GlobalContext.Provider>

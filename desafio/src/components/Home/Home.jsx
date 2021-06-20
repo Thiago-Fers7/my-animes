@@ -5,7 +5,7 @@ import { api } from '../../services/api'
 import styles from './styles.module.css'
 
 function Home() {
-    const { handleAnimes } = useContext(GlobalContext)
+    const { handleAnimes, addAnimeToFav, favorites } = useContext(GlobalContext)
 
     const [homeEpisodesTop, setHomeEpisodesTop] = useState([])
     const [homeEpisodesTopRes, setHomeEpisodesRes] = useState([])
@@ -29,16 +29,16 @@ function Home() {
 
     return (
         <>
-            <h2>Populares</h2>
             {isEpisode && (
                 <>
+                    <h2>Populares</h2>
                     <section className={styles.episodeContainer}>
                         {homeEpisodesTop.map(episode => {
                             return (
                                 <div key={episode.mal_id} className={styles.popularEpisode}>
-                                    <img src={episode.image_url} alt="Capa" />
+                                    <img src={episode.image_url} className={favorites.indexOf(episode.mal_id) !== -1 ? styles.isFavAdded : ''} alt="Capa" />
                                     <div className={styles.legend}>
-                                        <button type="button">Adiconar</button>
+                                        <button type="button" onClick={() => addAnimeToFav(episode.mal_id)}>Adiconar</button>
                                         <strong>{episode.title}</strong>
                                         <span>{episode.start_date ? `Data de lançamento: ${episode.start_date}` : ''}</span>
                                     </div>
@@ -53,9 +53,9 @@ function Home() {
                         {homeEpisodesTopRes.map(episode => {
                             return (
                                 <div key={episode.mal_id} className={styles.resEpisode}>
-                                    <img src={episode.image_url} alt="Capa" />
+                                    <img src={episode.image_url} className={favorites.indexOf(episode.mal_id) !== -1 ? styles.isFavAdded : ''} alt="Capa" />
                                     <div className={styles.legend}>
-                                        <button type="button">Adiconar</button>
+                                        <button type="button" onClick={() => addAnimeToFav(episode.mal_id)}>Adiconar</button>
                                         <strong>{episode.title}</strong>
                                         <span>{episode.start_date ? `Data de lançamento: ${episode.start_date}` : ''}</span>
                                     </div>
