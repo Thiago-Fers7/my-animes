@@ -10,19 +10,23 @@ import styles from './styles/app.module.css'
 import './styles/global.css'
 
 function App() {
-  const { isHome, isAnimes, isFav, isQuest, isSearching } = useContext(GlobalContext)
+  const { isHome, isAnimes, isFav, isQuest, isSearching, favorites } = useContext(GlobalContext)
 
   return (
     <div className={styles.appContainer}>
       <Header />
       <main>
-        {isQuest ? <SearchRes /> : (
+        {favorites ? (
           <>
-            {isHome ? <Home /> : ''}
-            {isAnimes ? <AllAnimes /> : ''}
-            {isFav ? <Favorites /> : ''}
+            {isQuest ? <SearchRes /> : (
+              <>
+                {isHome ? <Home /> : ''}
+                {isAnimes ? <AllAnimes /> : ''}
+                {isFav ? <Favorites /> : ''}
+              </>
+            )}
           </>
-        )}
+        ) : ''}
       </main>
 
       {/* Load animation */}

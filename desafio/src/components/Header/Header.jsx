@@ -2,8 +2,25 @@ import { useContext, useState } from 'react';
 import { GlobalContext } from '../../contexts/GlobalContext';
 import styles from './styles.module.css';
 
+
+// adicionar elemento para notificar quando um anime foi adicionado aos favoritos
+
+// adicionar borda verde para os animes que já foram adiciondos aos favoritos
+// verificar quando o anime foi adicionado aos Favoritos
+// verificar se o anime já está adicionado aos favoritos
+
 function Header() {
-    const { isHome, isAnimes, isFav, handleAnimes, handleHome, handleFav, searchResult, exitSearchMode, IsIconFav } = useContext(GlobalContext)
+    const {
+        isHome,
+        isAnimes,
+        isFav,
+        handleAnimes,
+        handleHome,
+        handleFav,
+        searchResult,
+        exitSearchMode,
+        IsIconFav
+    } = useContext(GlobalContext)
 
     const [valueInput, setValueInput] = useState('')
     const [isActive, setIsActive] = useState(false)
@@ -20,7 +37,7 @@ function Header() {
 
     function active(aux) {
         setIsActive(!isActive)
-        
+
         if (!aux) {
             setIsActive(aux)
         }

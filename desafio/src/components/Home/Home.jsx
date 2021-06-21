@@ -4,17 +4,17 @@ import { GlobalContext } from '../../contexts/GlobalContext'
 import styles from './styles.module.css'
 
 function Home() {
-    const { handleAnimes, addAnimeToFav, homeEpisodesTop, homeEpisodesTopRes } = useContext(GlobalContext)
+    const { handleAnimes, addAnimeToFav, homeEpisodesTop, homeEpisodesTopRes} = useContext(GlobalContext)
 
     return (
         <>
             <h2>Populares</h2>
             <section className={styles.episodeContainer}>
-                {homeEpisodesTop.map(episode => {
+                {homeEpisodesTop.map((episode, index) => {
                     return (
                         <div key={episode.mal_id} className={styles.popularEpisode}>
                             <img src={episode.image_url} alt="Capa" />
-                            <div className={styles.legend}>
+                            <div className={styles.legend} >
                                 <button type="button" onClick={() => addAnimeToFav(episode)}>Adiconar</button>
                                 <strong>{episode.title}</strong>
                                 <span>{episode.start_date ? `Data de lançamento: ${episode.start_date}` : ''}</span>
@@ -42,7 +42,7 @@ function Home() {
             </section>
 
             <footer className={styles.footerContainer}>
-                <button onClick={() => {handleAnimes(); window.scrollTo(0, 0)}} type="button">ver mais</button>
+                <button onClick={() => { handleAnimes(); window.scrollTo(0, 0) }} type="button">ver mais</button>
             </footer>
         </>
     )

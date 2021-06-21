@@ -5,7 +5,7 @@ import stylesHome from "../Home/styles.module.css"
 import styles from "./styles.module.css"
 
 function AllAnimes() {
-    const { addAnimeToFav, allAnimes, amountPage, pageSelect, page, formatDate } = useContext(GlobalContext)
+    const { addAnimeToFav, allAnimes, amountPage, pageSelect, page, formatDate, favorites, auxNumber } = useContext(GlobalContext)
 
     function previousPage() {
         if (page === 1) {
@@ -31,10 +31,10 @@ function AllAnimes() {
             <section className={stylesHome.remainingEpisodes}>
                 {allAnimes.map(anime => {
                     const date = formatDate(anime.start_date)
-                    
+
                     return (
                         <div key={anime.mal_id} className={stylesHome.resEpisode}>
-                            <img src={anime.image_url} alt="Capa" />
+                            <img src={anime.image_url} alt="Capa" className={favorites.indexOf(anime) !== -1 && typeof auxNumber === 'number' ? stylesHome.favAdd : ''} />
                             <div className={stylesHome.legend}>
                                 <button type="button" onClick={() => addAnimeToFav(anime)}>Adiconar</button>
                                 <strong>{anime.title}</strong>

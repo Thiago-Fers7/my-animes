@@ -5,7 +5,7 @@ import stylesHome from "../Home/styles.module.css"
 import styles from "./styles.module.css"
 
 function SearchRes() {
-    const { questAnimesRes, addAnimeToFav, exitSearchMode, formatDate } = useContext(GlobalContext)
+    const { questAnimesRes, addAnimeToFav, exitSearchMode, formatDate, favorites, auxNumber } = useContext(GlobalContext)
 
     return (
         <>
@@ -22,7 +22,7 @@ function SearchRes() {
 
                     return (
                         <div key={anime.mal_id} className={stylesHome.resEpisode}>
-                            <img src={anime.image_url} alt="Capa" />
+                            <img src={anime.image_url} alt="Capa" className={favorites.indexOf(anime) !== -1 && typeof auxNumber === 'number' ? stylesHome.favAdd : ''}/>
                             <div className={stylesHome.legend}>
                                 <button type="button" onClick={() => addAnimeToFav(anime)}>Adicionar</button>
                                 <strong>{anime.title}</strong>

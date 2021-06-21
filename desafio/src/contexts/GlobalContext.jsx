@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from 'react'
 import { api } from '../services/api'
+import usePersistedState from '../services/usePersistedState'
 
 export const GlobalContext = createContext({})
 
@@ -11,7 +12,7 @@ export function GlobalContextProvider({ children }) {
     const [isQuest, setIsQuest] = useState(false)
     const [questAnimesRes, setQuestAnimesRes] = useState([])
 
-    const [favorites, setFavorites] = useState([])
+    const [favorites, setFavorites] = usePersistedState([]) // Hook personalizado
 
     const [allAnimes, setAllAnimes] = useState([])
     const [amountPage, setAmountPage] = useState([])
@@ -83,7 +84,6 @@ export function GlobalContextProvider({ children }) {
         for (let i = 1; i <= 20; i++) {
             pages.push(i)
         }
-
         setAmountPage(pages)
     }, [])
 
@@ -112,8 +112,22 @@ export function GlobalContextProvider({ children }) {
         setIsAnimes(false)
     }
 
+    function checkID(anime) {
+        if (favorites.length === 0) {
+            return true
+        } else {
+            for (let i = 0; i < favorites.length; i++) {
+                if (favorites[i].mal_id === anime.mal_id) {
+                    return false
+                }
+            }
+            return true
+        }
+
+    }
+
     function addAnimeToFav(anime) {
-        if (favorites.indexOf(anime) === -1) {
+        if (checkID(anime)) {
             let AllAnimes = favorites
 
             AllAnimes.unshift(anime)
@@ -123,7 +137,7 @@ export function GlobalContextProvider({ children }) {
         }
     }
 
-    function removeAnimeToFav(id) {
+    function removeAnimeToFav() {
 
     }
 
@@ -157,7 +171,8 @@ export function GlobalContextProvider({ children }) {
             questAnimesRes,
             exitSearchMode,
             formatDate,
-            IsIconFav
+            IsIconFav,
+            checkID
         }}>
             {children}
         </GlobalContext.Provider>
