@@ -19,7 +19,6 @@ export function GlobalContextProvider({ children }) {
 
     const [homeEpisodesTop, setHomeEpisodesTop] = useState([])
     const [homeEpisodesTopRes, setHomeEpisodesRes] = useState([])
-    const [isEpisode, setIsEpisode] = useState(false)
 
     const [isSearching, setIsSearching] = useState(false)
 
@@ -137,8 +136,8 @@ export function GlobalContextProvider({ children }) {
         }
     }
 
-    function removeAnimeToFav() {
-
+    function removeAnimeToFav(index) {
+        setFavorites(favorites.splice(index, 1))
     }
 
     function formatDate(date) {
@@ -162,7 +161,6 @@ export function GlobalContextProvider({ children }) {
             amountPage,
             homeEpisodesTop,
             homeEpisodesTopRes,
-            isEpisode,
             pageSelect,
             isSearching,
             page,
@@ -171,8 +169,7 @@ export function GlobalContextProvider({ children }) {
             questAnimesRes,
             exitSearchMode,
             formatDate,
-            IsIconFav,
-            checkID
+            IsIconFav
         }}>
             {children}
         </GlobalContext.Provider>
