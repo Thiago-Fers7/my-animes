@@ -26,6 +26,32 @@ export function GlobalContextProvider({ children }) {
 
     const [page, setPage] = useState(1)
 
+    const [isInstall, setIsInstall] = useState(false)
+    const [myPrompt, setMyPrompt] = useState(null)
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault()
+        setMyPrompt(e)
+
+        setIsInstall(true)
+    })
+
+    function buttonInstall() {
+
+        myPrompt.prompt()
+
+        myPrompt.userChoice
+            .then((choiceResult) => {
+                if (choiceResult.outcome === 'accepted') {
+                    setIsInstall(false)
+                } else {
+                    // Instalação não foi realizada
+                }
+
+                setMyPrompt(null)
+            })
+    }
+
     function exitSearchMode() {
         setIsQuest(false)
         setIsSearching(false)
@@ -137,7 +163,8 @@ export function GlobalContextProvider({ children }) {
     }
 
     function removeAnimeToFav(index) {
-        setFavorites(favorites.splice(index, 1))
+        const value = favorites.splice(index, 1)
+        setFavorites(value)
     }
 
     function formatDate(date) {
@@ -169,7 +196,9 @@ export function GlobalContextProvider({ children }) {
             questAnimesRes,
             exitSearchMode,
             formatDate,
-            IsIconFav
+            IsIconFav,
+            buttonInstall,
+            isInstall
         }}>
             {children}
         </GlobalContext.Provider>

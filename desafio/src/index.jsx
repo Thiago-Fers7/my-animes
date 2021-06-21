@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import App from './App.jsx'
 import { GlobalContextProvider } from './contexts/GlobalContext'
 
+import { registerServiceWorker } from './serviceWorker'
+
 ReactDOM.render(
   <React.StrictMode>
     <GlobalContextProvider>
@@ -11,3 +13,5 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
 );
+
+registerServiceWorker();

@@ -19,7 +19,9 @@ function Header() {
         handleFav,
         searchResult,
         exitSearchMode,
-        IsIconFav
+        IsIconFav,
+        buttonInstall,
+        isInstall
     } = useContext(GlobalContext)
 
     const [valueInput, setValueInput] = useState('')
@@ -89,6 +91,12 @@ function Header() {
                 <div className={styles.buttonContainer}>
                     <div onClick={active} className={styles.menuButton} />
                 </div>
+
+                {isInstall && (
+                    <button type="button" onClick={buttonInstall} className={styles.downloadButton}>
+                        <img src="/images/get_app.svg" alt="Instalar Aplicativo" />
+                    </button>
+                )}
             </nav>
         </header>
     )

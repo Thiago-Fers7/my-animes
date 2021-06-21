@@ -10,7 +10,13 @@ import styles from './styles/app.module.css'
 import './styles/global.css'
 
 function App() {
-  const { isHome, isAnimes, isFav, isQuest, isSearching } = useContext(GlobalContext)
+  const {
+    isHome,
+    isAnimes,
+    isFav,
+    isQuest,
+    isSearching
+  } = useContext(GlobalContext)
 
   return (
     <div className={styles.appContainer}>

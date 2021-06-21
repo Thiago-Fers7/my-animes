@@ -47,6 +47,24 @@
     background: rgba(251, 251, 251, 0.212);
 }
 
+.headerContainer nav .downloadButton {
+    font-size: 0;
+    position: absolute;
+    top: 6rem;
+    right: 2rem;
+    background: transparent;
+    border: 1px solid #ffffff;
+    padding: 0.4rem 2rem;
+}
+
+.headerContainer nav .downloadButton:hover {
+    background: rgba(255, 255, 255, 0.13);
+}
+
+.downloadButton img {
+    height: 2rem;
+}
+
 .formContainer {
     display: flex;
     align-items: center;

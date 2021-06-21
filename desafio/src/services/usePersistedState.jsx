@@ -1,9 +1,7 @@
 import { useState } from "react";
 
 function usePersistedState(initialState) {
-    console.log(initialState)
-
-    const key = 'favortes'
+    const key = 'favorites'
 
     const [state, setState] = useState(() => {
         const storageValue = localStorage.getItem(key)
