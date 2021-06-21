@@ -22,6 +22,8 @@ export function GlobalContextProvider({ children }) {
 
     const [isSearching, setIsSearching] = useState(false)
 
+    const [IsIconFav, setIsIconFav] = useState(false)
+
     const [page, setPage] = useState(1)
 
     function exitSearchMode() {
@@ -103,6 +105,7 @@ export function GlobalContextProvider({ children }) {
 
     function handleFav() {
         setIsQuest(false)
+        setIsIconFav(false)
 
         setIsFav(true)
         setIsHome(false)
@@ -116,11 +119,18 @@ export function GlobalContextProvider({ children }) {
             AllAnimes.unshift(anime)
 
             setFavorites(AllAnimes)
+            setIsIconFav(true)
         }
     }
 
     function removeAnimeToFav(id) {
 
+    }
+
+    function formatDate(date) {
+        const newDate = String(date).split("T")[0].split("-")
+
+        return `${newDate[2]}/${newDate[1]}/${newDate[0]}`
     }
 
     return (
@@ -145,7 +155,9 @@ export function GlobalContextProvider({ children }) {
             isQuest,
             searchResult,
             questAnimesRes,
-            exitSearchMode
+            exitSearchMode,
+            formatDate,
+            IsIconFav
         }}>
             {children}
         </GlobalContext.Provider>
