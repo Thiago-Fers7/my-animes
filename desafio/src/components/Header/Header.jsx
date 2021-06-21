@@ -3,9 +3,10 @@ import { GlobalContext } from '../../contexts/GlobalContext';
 import styles from './styles.module.css';
 
 function Header() {
-    const { isHome, isAnimes, isFav, handleAnimes, handleHome, handleFav, searchResult, exitSearchMode } = useContext(GlobalContext)
+    const { isHome, isAnimes, isFav, handleAnimes, handleHome, handleFav, searchResult, exitSearchMode, IsIconFav } = useContext(GlobalContext)
 
     const [valueInput, setValueInput] = useState('')
+    const [isActive, setIsActive] = useState(false)
 
     function capValue(e) {
         const inputValue = e.target.value
@@ -17,28 +18,36 @@ function Header() {
         }
     }
 
+    function active(aux) {
+        setIsActive(!isActive)
+        
+        if (!aux) {
+            setIsActive(aux)
+        }
+    }
+
     return (
         <header className={styles.headerContainer}>
             <nav>
-                <strong id="Logo">Meus animes</strong>
-                <ul>
+                <strong>Meus animes</strong>
+                <ul className={isActive ? styles.active : ''}>
                     <li
                         className={isHome ? styles.isActive : ''}
-                        onClick={handleHome}
+                        onClick={() => { handleHome(); active(false) }}
                     >
                         Início
                     </li>
 
                     <li
                         className={isAnimes ? styles.isActive : ''}
-                        onClick={handleAnimes}
+                        onClick={() => { handleAnimes(); active(false) }}
                     >
                         Animes
                     </li>
 
                     <li
-                        className={isFav ? styles.isActive : ''}
-                        onClick={handleFav}
+                        className={`${isFav ? styles.isActive : ''} ${IsIconFav ? styles.iconFav : ''}`}
+                        onClick={() => { handleFav(); active(false) }}
                     >
                         Favoritos
                     </li>
@@ -59,6 +68,10 @@ function Header() {
                         <img src="/images/search.svg" alt="Pesquisa" />
                     </button>
                 </form>
+
+                <div className={styles.buttonContainer}>
+                    <div onClick={active} className={styles.menuButton} />
+                </div>
             </nav>
         </header>
     )

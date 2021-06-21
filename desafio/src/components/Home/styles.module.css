@@ -13,7 +13,7 @@ h2 {
     background: #00000030;
     border-radius: 0.5rem;
 
-    box-shadow: 0 0 50px #00508b;
+    box-shadow: 0 0 100px #00508b;
 }
 
 .popularEpisode,
@@ -26,8 +26,6 @@ h2 {
 
 .popularEpisode img,
 .resEpisode img {
-    box-shadow: 1px 1px 3px #ffffff;
-
     width: 100%;
     min-width: 200px;
     height: 250px;

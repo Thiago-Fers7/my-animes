@@ -46,7 +46,7 @@ button {
 
 .loader {
     position: fixed;
-    top: 2rem;
+    top: 7rem;
     right: 2rem;
 
     animation: is-rotating 1s infinite;

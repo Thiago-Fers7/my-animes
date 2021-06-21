@@ -26,7 +26,7 @@
 }
 
 .pagesContainer img {
-    width: auto;
+    width: 50px;
     background: transparent;
     border: 1px solid rgb(0, 68, 255);
 }

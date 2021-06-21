@@ -15,6 +15,10 @@
     margin: auto;
 }
 
+.buttonContainer {
+    display: none;
+}
+
 .headerContainer nav strong {
     font-size: 2rem;
     white-space: nowrap;
@@ -79,4 +83,121 @@
 
 .formContainer button img {
     height: 2rem;
+}
+
+.iconFav {
+    position: relative;
+}
+
+.iconFav::before {
+    content: "";
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    box-shadow: 0 0 3px #58f606, 0 0 5px #00ff2e, 0 0 5px #ffffff;
+    z-index: 10;
+    background: greenyellow;
+}
+
+@media screen and (max-width: 1175px) {
+    .headerContainer nav ul {
+        position: fixed;
+        left: calc(-15rem + -10px);
+        bottom: 0;
+
+        box-shadow: 0px 0px 10px #0008ff;
+
+        padding-top: calc(6rem);
+        height: 100vh;
+
+        flex-direction: column;
+
+        width: 15rem;
+
+        background: #06003d;
+        z-index: 999;
+
+        transition: 0.3s;
+    }
+
+    .headerContainer nav ul.active {
+        left: 0;
+    }
+
+    .headerContainer nav ul li {
+        display: block;
+        border-radius: 0;
+        text-align: center;
+    }
+
+    .headerContainer nav {
+        justify-content: center;
+    }
+
+    .buttonContainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .buttonContainer .menuButton {
+        width: 40px;
+        height: 40px;
+        border-radius: 5px;
+        background: rgb(5, 100, 209);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        transition: all ease 0.4s;
+        cursor: pointer;
+        z-index: 999;
+    }
+
+    .buttonContainer .menuButton::before {
+        content: "";
+        position: absolute;
+        width: 23px;
+        height: 2px;
+        transition: all ease 0.4s;
+        background: white;
+        transform: translateY(-10px);
+        box-shadow: 0 10px 0 rgb(255 255 255);
+    }
+
+    .buttonContainer .menuButton::after {
+        content: "";
+        position: absolute;
+        width: 23px;
+        height: 2px;
+        transition: all ease 0.4s;
+        background: white;
+        transform: translateY(10px);
+    }
+
+    .active ~ .buttonContainer .menuButton::before {
+        transform: translateY(0) rotate(45deg);
+        box-shadow: 0 0 0 #ffffff;
+    }
+
+    .active ~ .buttonContainer .menuButton::after {
+        transform: translateY(0) rotate(135deg);
+    }
+
+    .active ~ .buttonContainer .menuButton {
+        background: red;
+    }
+}
+
+@media screen and (max-width: 720px) {
+    .headerContainer nav {
+        gap: 1rem;
+    }
+
+    .headerContainer strong {
+        display: none;
+    }
 }
