@@ -17,7 +17,7 @@ function Favorites() {
                         <div key={anime.mal_id} className={stylesHome.resEpisode}>
                             <img src={anime.image_url} alt="Capa" className={stylesHome.favAdd}/>
                             <div className={stylesHome.legend}>
-                                <button type="button" style={{ background: 'red', boxShadow: 'none' }} onClick={() => removeAnimeToFav(index)}>Remover</button>
+                                <button type="button" style={{ background: 'red', boxShadow: 'none' }} onClick={() => removeAnimeToFav(anime.mal_id)}>Remover</button>
                                 <strong>{anime.title}</strong>
                                 <span>{anime.start_date ? `Lançamento: ${date}` : ''}</span>
                             </div>

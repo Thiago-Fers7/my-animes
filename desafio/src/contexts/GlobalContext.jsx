@@ -163,8 +163,12 @@ export function GlobalContextProvider({ children }) {
     }
 
     function removeAnimeToFav(index) {
-        const value = favorites.splice(index, 1)
-        setFavorites(value)
+        function verifyRemove(value) {
+            return value.mal_id !== index
+        }
+
+        const newFavorites = favorites.filter(verifyRemove)
+        setFavorites(newFavorites)
     }
 
     function formatDate(date) {
