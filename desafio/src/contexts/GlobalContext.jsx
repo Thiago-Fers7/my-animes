@@ -162,12 +162,8 @@ export function GlobalContextProvider({ children }) {
         }
     }
 
-    function removeAnimeToFav(index) {
-        function verifyRemove(value) {
-            return value.mal_id !== index
-        }
-
-        const newFavorites = favorites.filter(verifyRemove)
+    function removeAnimeToFav(id) {
+        const newFavorites = favorites.filter(fav => fav.mal_id !== id)
         setFavorites(newFavorites)
     }
 
